@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <style>
+        body {
+            font-family: Sans-serif;
+            font-size: 11px;
+            background: #c8c8c8;
+        }
+
+        .slice {
+            cursor: pointer;
+        }
+
+        .slice .main-arc {
+            /*stroke: #E5E2E0;*/
+            /*stroke: whitesmoke;*/
+            stroke:#c8c8c8;
+            stroke-width: 1px;
+        }
+
+        .slice .hidden-arc {
+            fill: none;
+        }
+
+        .slice text {
+            pointer-events: none;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+    </style>
+    <style>
+        text.title {
+            text-anchor: middle;
+            font-size: 20px;
+        }
+
+        .legend text {
+            font-size: 12px;
+        }
+
+        path {
+            fill-opacity: .8;
+        }
+
+        circle {
+            fill: grey;
+            opacity: .7;
+        }
+
+        .comp1 {
+            fill: rgb(0, 200, 200);
+        }
+
+        .comp2 {
+            fill: rgb(200, 0, 200);
+        }
+
+        .compBoth {
+            fill: #ac8cdc;
+        }
+
+        path.comp1, path.comp2 {
+            opacity: .5;
+        }
+
+        rect {
+            opacity: .8;
+            cursor: pointer;
+        }
+
+        rect.comp1 {
+            stroke: rgb(0, 200, 200);
+        }
+
+        rect.comp2 {
+            stroke: rgb(200, 0, 200);
+        }
+
+        rect:not(.selected) {
+            fill: white;
+        }
+
+        .types {
+            font-size: 8px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .font-face {
+            font-family: 'Signika';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Signika Regular'), local('Signika-Regular'), url(https://fonts.gstatic.com/s/signika/v10/vEFR2_JTCgwQ5ejvG18mBkho.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        #legend {
+            position: relative;
+            float:left;
+            overflow-y: scroll;
+            height: 500px; /*垂直 500 < 550*/
+            width: 200px; /*水平 150 < 200*/
+        }
+
+        #top-text{
+            position:absolute;
+            width:60%;
+            text-align:left;
+            left:2.77777778rem;
+            margin-top:.5rem;
+            font-size:2.05555556rem;
+            font-family:PingFangSC-Regular;
+            font-weight:700;
+            color:#c08f91;
+            text-decoration:underline;
+            z-index:1;
+            text-shadow:-.16666667rem 0 hsla(0,0%,100%,.6),0 .16666667rem hsla(0,0%,100%,.6),.16666667rem 0 hsla(0,0%,100%,.6),0 -.16666667rem hsla(0,0%,100%,.6)
+        }
+
+        #top-text-show{
+            position:absolute;
+            width:100%;
+            text-align:left;
+            left:2.77777778rem;
+            margin-top:.5rem;
+            font-size:1.05555556rem;
+            font-family:PingFangSC-Regular;
+            font-weight:700;
+            color:#001a34;
+            text-decoration:underline;
+            z-index:1
+        }
+        .source_text{fill:#505050;text-decoration:underline}
+
+    </style>
+
+    <link href='font.css' rel='stylesheet' type='text/css'>
+    <script src='d3.v4.min.js'></script>
+    <script src="fancycharts.js"></script>
+    <script src="d3-legend.min.js"></script>
+</head>
+<body>
+<script src='vistest.js'></script>
+</body>
+</html>
