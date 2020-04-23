@@ -251,7 +251,7 @@ function mainContent(cityName = "中国") {
                 .on('mouseover',d => changeContent2(d))
                 .on('click', d => {
                     d3.event.stopPropagation();//阻止点击事件的传播
-                    focusOn(d); //每一块都执行这个事件
+                    d.children?focusOn(d):''; //每一块都执行这个事件
                 });
 
             function changeContent2(d){
@@ -645,4 +645,3 @@ function loadLegend(){
 showLeftContent();
 loadLegend();
 mainContent();
-
