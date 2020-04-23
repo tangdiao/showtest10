@@ -221,7 +221,7 @@ function focusOn(d) {
 /*
 * 6.mainContent : 中间主体部分的渲染
 * */
-function mainContent(cityName = "中国",tag=1) {
+function mainContent(cityName = "中国",tag=0) {
     d3.json(
         'flare.json',
         (error, root) => {
@@ -237,8 +237,10 @@ function mainContent(cityName = "中国",tag=1) {
             root = updateRoot(root,cityName)
             root = d3.hierarchy(root);
             root.sum(d => d.add_size);
-            if(tag!=1)
+            if(tag==1)
                 root.sort((a,b)=> b.value - a.value)
+            if(tag==2)
+                root.sort((a,b)=> a.value - b.value)
 
             // 6.3 将数据进行绑定到一个个的slice上
             const slice = g.selectAll('g.slice').data(partition(root).descendants().filter(d => d.value>2
@@ -517,7 +519,7 @@ function showLeftContent() {
             .attr('width', 15).attr('height', 15)
             .attr('ry', 2)
             .style('fill', d => d === "comp1" ? "red" : "black")
-            .on('click',d => d==="comp1"?mainContent('中国',0):mainContent())
+            .on('click',d => d==="comp1"?mainContent('中国',1):mainContent('中国',2))
         ;
 
         var sortCity = gLeft.append('g').attr('class', 'types');
@@ -649,4 +651,3 @@ function loadLegend(){
 showLeftContent();
 loadLegend();
 mainContent();
-
