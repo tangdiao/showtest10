@@ -221,7 +221,7 @@ function focusOn(d) {
 /*
 * 6.mainContent : 中间主体部分的渲染
 * */
-function mainContent(cityName = "中国") {
+function mainContent(cityName = "中国",tag=1) {
     d3.json(
         'flare.json',
         (error, root) => {
@@ -230,13 +230,15 @@ function mainContent(cityName = "中国") {
             // 6.1 移除现有的g.main，重新创建以在后面进行绘制
             svg.select('g.main').remove()
             const g = svg.append('g').attr("class", "main");
+            g.attr('transform','scale(0.95)')
             // g.on('mouseleave',()=>mainContent())
 
             // 6.2 从分层数据构造一个根节点，方便下面布局函数调用。并按照最后的add_size进行一个统计
             root = updateRoot(root,cityName)
             root = d3.hierarchy(root);
             root.sum(d => d.add_size);
-            // root.sort((a,b)=> b.value - a.value)
+            if(tag!=1)
+                root.sort((a,b)=> b.value - a.value)
 
             // 6.3 将数据进行绑定到一个个的slice上
             const slice = g.selectAll('g.slice').data(partition(root).descendants().filter(d => d.value>2
@@ -514,7 +516,9 @@ function showLeftContent() {
             }).attr('y', 2*gLeftStartY)
             .attr('width', 15).attr('height', 15)
             .attr('ry', 2)
-            .style('fill', d => d === "comp1" ? "red" : "black");
+            .style('fill', d => d === "comp1" ? "red" : "black")
+            .on('click',d => d==="comp1"?mainContent('中国',0):mainContent())
+        ;
 
         var sortCity = gLeft.append('g').attr('class', 'types');
 
@@ -645,3 +649,4 @@ function loadLegend(){
 showLeftContent();
 loadLegend();
 mainContent();
+
