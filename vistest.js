@@ -47,33 +47,14 @@ const color = d3.scaleOrdinal(lightGreenFirstPalette);
 const colorSort = d3.scaleLinear()
     .domain([0,20])
     .range([
-        "#fc3103",
-        "#ebfc03",
-        "#dbfc03",
-        "#cafc03"
+        "#EB4E21",
+        "#FF7F25",
+        "#E89517",
+        "#FFC521"
         ]);
 
 
 // 1.6 定义每天的数据变化对应的颜色比例尺
-/*var threshold = d3.scaleThreshold()//阈值比例尺
-// .domain([0，max]) //这里咱们放在后面根据是否为武汉再定义数据的定义域
-    .range(["#8cfc03",
-        "#a9fc03",
-        "#bafc03",
-        "#cafc03",
-        "#dbfc03",
-        "#ebfc03",
-        "#fcf003",
-        "#fcd703",
-        "#fcc203",
-        "#fcad03",
-        "#fc8803",
-        "#fc7303",
-        "#fc4a03",
-        "#fc3103",
-        "#fc0703"]);*/
-
-
 var threshold = d3.scaleThreshold()//阈值比例尺
 // .domain([0，max]) //这里咱们放在后面根据是否为武汉再定义数据的定义域
     .range([
@@ -249,6 +230,7 @@ function mainContent(cityName = "中国") {
             // 6.1 移除现有的g.main，重新创建以在后面进行绘制
             svg.select('g.main').remove()
             const g = svg.append('g').attr("class", "main");
+            // g.on('mouseleave',()=>mainContent())
 
             // 6.2 从分层数据构造一个根节点，方便下面布局函数调用。并按照最后的add_size进行一个统计
             root = updateRoot(root,cityName)
@@ -397,6 +379,16 @@ function showLeftContent() {
             .style("height", "50vh")
             .attr("transform", "translate(" + (3 * width / 10) + "," + (-3.8 * height / 10) + ")");
         gRight = gRightSource.append('g')
+
+        gRight.append('rect')
+            .style('width', '20vw')
+            .style('height', '30vh')
+            // .attr('viewBox', `${-width} ${-height} ${width} ${height}`)
+            .attr("transform","translate(0,0)")
+            .attr("fill","#5bf0c8")
+            .attr("stroke","red")
+            .attr("stroke-width",2)
+            .attr("stroke-dasharray",[20,10,5,5,5,10])
 
         line1 = gRight.append('text').attr('id', "top-text-show")
             .attr('x', gRightStartX).attr('y', gRightStartY)
@@ -653,7 +645,4 @@ function loadLegend(){
 showLeftContent();
 loadLegend();
 mainContent();
-
-
-
 
