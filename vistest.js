@@ -265,7 +265,7 @@ function mainContent(cityName = "中国",tag=0) {
                     line2.datum(d).text(d => d.data.Province? '当前省份: ' + d.data.Province:'当前国家: '+d.data.Country);
                     line3.datum(d).text(d => d.data.city_name?'当前城市:' + d.data.city_name:'');
                     line4.datum(d).text(d => '累计确诊人数: ' + formatNumber(d.value));
-                    line5.datum(d).text(d => '全国占比: ' + percent);
+                    line5.datum(d).text(d => '当前占比: ' + percent);
                     removeLine();
                 }
             }
